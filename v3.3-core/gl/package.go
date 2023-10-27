@@ -2062,6 +2062,9 @@ package gl
 // static void  glowDrawElementsInstanced(GPDRAWELEMENTSINSTANCED fnptr, GLenum  mode, GLsizei  count, GLenum  type, const void * indices, GLsizei  instancecount) {
 //   (*fnptr)(mode, count, type, indices, instancecount);
 // }
+// static void  glowDrawElementsInstancedWithOffset(GPDRAWELEMENTSINSTANCED fnptr, GLenum  mode, GLsizei  count, GLenum  type, uintptr_t indexOffset, GLsizei  instancecount) {
+//   (*fnptr)(mode, count, type, (const void *)(indexOffset), instancecount);
+// }
 // static void  glowDrawElementsInstancedARB(GPDRAWELEMENTSINSTANCEDARB fnptr, GLenum  mode, GLsizei  count, GLenum  type, const void * indices, GLsizei  primcount) {
 //   (*fnptr)(mode, count, type, indices, primcount);
 // }
@@ -9664,6 +9667,9 @@ func DrawElementsIndirect(mode uint32, xtype uint32, indirect unsafe.Pointer) {
 // draw multiple instances of a set of elements
 func DrawElementsInstanced(mode uint32, count int32, xtype uint32, indices unsafe.Pointer, instancecount int32) {
 	C.glowDrawElementsInstanced(gpDrawElementsInstanced, (C.GLenum)(mode), (C.GLsizei)(count), (C.GLenum)(xtype), indices, (C.GLsizei)(instancecount))
+}
+func DrawElementsInstancedWithOffset(mode uint32, count int32, xtype uint32, indexOffset uintptr, instancecount int32) {
+	C.glowDrawElementsInstancedWithOffset(gpDrawElementsInstanced, (C.GLenum)(mode), (C.GLsizei)(count), (C.GLenum)(xtype), (C.uintptr_t)(indexOffset), (C.GLsizei)(instancecount))
 }
 func DrawElementsInstancedARB(mode uint32, count int32, xtype uint32, indices unsafe.Pointer, primcount int32) {
 	C.glowDrawElementsInstancedARB(gpDrawElementsInstancedARB, (C.GLenum)(mode), (C.GLsizei)(count), (C.GLenum)(xtype), indices, (C.GLsizei)(primcount))
